@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../utils/api";
-import { Link } from "react-router-dom";
 import { ArticleCard } from "./ArticleCard";
 
-export const AllArticles = (props) => {
+
+export const AllArticles = () => {
   const [allArticles, setAllArticels] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,6 +16,7 @@ export const AllArticles = (props) => {
         setIsLoading(false);
       });
   }, []);
+
 
   if (isLoading)
     return (

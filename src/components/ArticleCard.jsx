@@ -1,6 +1,23 @@
 import { Link } from "react-router-dom";
+import { patchVoteById } from "../utils/api";
+import { useState, useEffect } from "react";
 
 export const ArticleCard = (props) => {
+
+  const [voteIncrement, setVoteIncrement] = useState(0);
+
+  useEffect(() => {
+    patchVoteById((data) => {
+      setVoteIncrement(data)
+    });
+  }, []);
+
+  const handleVote = (event) => {
+    const voted = event.target.value;
+    props.setVoteIncrement(voted)
+  };
+
+
   return (
     <li className="articleCard" key={props.article_id}>
       <Link
@@ -20,7 +37,6 @@ export const ArticleCard = (props) => {
       >
         <h3></h3>
         <dl>
-          
           <br></br>
           <dt>{props.title}</dt>
           <br></br>
@@ -29,8 +45,8 @@ export const ArticleCard = (props) => {
           <dt><strong>Article id:</strong> {props.article_id}</dt>
           <dt><strong>Topic:</strong> {props.topic}</dt>
           <dt><strong>Author:</strong> {props.author}</dt>
-          <dt><strong>Votes:</strong> {props.votes}</dt>
-          <dt><strong>Comment count:</strong> {props.comment_count}</dt>
+          <dt><strong><button onClick={handleVote}>Votes:</button></strong> {props.votes}</dt>
+          <dt><strong>Comments:</strong> {props.comment_count}</dt>
           <dt>{props.created_at}</dt>
         </dl>
       </Link>
