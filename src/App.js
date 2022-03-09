@@ -2,12 +2,11 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AllArticles } from "./components/All_Articles";
 import { TopicArticles } from "./components/TopicArticles";
-import { useState } from "react";
 import { Nav } from "./components/Nav"
 import { SingleArticle } from "./components/SingleArticle";
 
 function App() {
-  const [queryTopic, setQueryTopic] = useState("");
+  
 
   return (
     <BrowserRouter>
@@ -17,11 +16,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<AllArticles setQueryTopic={setQueryTopic} />}
+            element={<AllArticles  />}
           />
           <Route
             path="/topics/:topic_slug"
-            element={<TopicArticles topic={queryTopic} setQueryTopic={setQueryTopic} />}
+            element={<TopicArticles  />}
           ></Route>
           <Route
           path="/all_articles/article/:article_id"

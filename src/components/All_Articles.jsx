@@ -29,8 +29,8 @@ export const AllArticles = () => {
     <main>
       <section className="all-articles_container">
         <ul>
-          {allArticles.map((article, index) => {
-            return <ArticleCard key={index} {...article} />;
+          {allArticles.map((article, article_id) => {
+            return <ArticleCard key={article_id} {...article} />;
           })}
         </ul>
       </section>

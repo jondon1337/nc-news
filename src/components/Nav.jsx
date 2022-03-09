@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getTopics } from "../utils/api"
 
 
-export const Nav = (props) => {
+export const Nav = () => {
 
     const [allTopics, setAllTopics] = useState([]);
 
@@ -15,18 +15,14 @@ export const Nav = (props) => {
       }, []);
     
 
-    function handleTopic(event) {
-        const selected = event.target.value;
-        props.setQueryTopic(selected);
-      }
 
   return (
     <main>
       <section>
         {allTopics.map((topic, index) => {
           return (
-            <Link to={`/topics/${topic.slug}`}>
-              <button key={index} value={topic.slug} onClick={handleTopic}>
+            <Link key={`topicList${index}`} to={`/topics/${topic.slug}`}>
+              <button  value={topic.slug}>
                 {topic.slug}
               </button>
             </Link>
