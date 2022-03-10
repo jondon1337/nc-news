@@ -7,14 +7,14 @@ export const TopicArticles = () => {
   const [topicArticles, setTopicArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const query = useParams();
+  const {topic_slug} = useParams();
 
   useEffect(() => {
-    getArticlesByTopic(query.topic_slug).then((data) => {
+    getArticlesByTopic(topic_slug).then((data) => {
       setTopicArticles(data);
     });
     setIsLoading(false);
-  }, [query]);
+  }, [topic_slug]);
 
   if (isLoading) return <p>loading....</p>;
   return (

@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { HandleVote } from "./HandleVote";
+import { useState } from "react";
 
 export const ArticleCard = (props) => {
+  
+  const [votes, setVotes] = useState(props.votes);
+
   return (
     <li className="articleCard" key={props.article_id}>
       <Link
@@ -35,10 +40,12 @@ export const ArticleCard = (props) => {
             <strong>Author:</strong> {props.author}
           </dt>
           <dt>
-            <strong>Votes:</strong>
-            {props.votes}
+            <strong>Votes:</strong> {votes}
           </dt>
-
+          <dt>
+              <HandleVote setVotes={setVotes} votes={votes} />
+          </dt>
+                
           <dt>
             <strong>Comments:</strong> {props.comment_count}
           </dt>
@@ -46,5 +53,6 @@ export const ArticleCard = (props) => {
         </dl>
       </Link>
     </li>
+    
   );
 };
