@@ -8,7 +8,11 @@ export const ArticleCard = (props) => {
 
   return (
     <li className="articleCard" key={props.article_id}>
-      <Link
+    
+        <h3></h3>
+        <dl>
+          <br></br>
+          <Link 
         style={{
           textDecoration: "none",
           display: "flex",
@@ -23,10 +27,8 @@ export const ArticleCard = (props) => {
         }}
         to={`/all_articles/article/${props.article_id}`}
       >
-        <h3></h3>
-        <dl>
-          <br></br>
           <dt>{props.title}</dt>
+          </Link>
           <br></br>
           <dt>{props.body}</dt>
           <br></br>
@@ -40,10 +42,7 @@ export const ArticleCard = (props) => {
             <strong>Author:</strong> {props.author}
           </dt>
           <dt>
-            <strong>Votes:</strong> {votes}
-          </dt>
-          <dt>
-              <HandleVote setVotes={setVotes} votes={votes} />
+              <HandleVote setVotes={setVotes} votes={votes} article_id={props.article_id} />
           </dt>
                 
           <dt>
@@ -51,7 +50,7 @@ export const ArticleCard = (props) => {
           </dt>
           <dt>{props.created_at}</dt>
         </dl>
-      </Link>
+      
     </li>
     
   );
