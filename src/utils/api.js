@@ -29,8 +29,9 @@ export const getArticleById = (id) => {
   });
 };
 
-// export const patchVoteById = (id) => {
-//   return api.patch(`/articles/${id}`).then((response) => {
-//     return response.data.article;
-//   })
-// };
+export const patchVoteById = (id, votes) => {
+  console.log(votes)
+  return api.patch(`/articles/${id}`, {inc_votes: votes}).then((response) => {
+    return response.data.article;
+  })
+};

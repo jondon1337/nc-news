@@ -1,10 +1,15 @@
+* {box-sizing: border-box;}
+
+body {
+  /* font-family: sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0; */
+}
+
 .App {
   text-align: center;
 }
 
-.articleCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
+
