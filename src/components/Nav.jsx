@@ -22,7 +22,7 @@ export const Nav = () => {
         {allTopics.map((topic, index) => {
           return (
             <Link key={`topicList${index}`} to={`/topics/${topic.slug}`}>
-              <button  value={topic.slug}>
+              <button className="button" value={topic.slug}>
                 {topic.slug}
               </button>
             </Link>
