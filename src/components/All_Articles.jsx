@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../utils/api";
-import { Link } from "react-router-dom";
 import { ArticleCard } from "./ArticleCard";
 
-export const AllArticles = (props) => {
+
+export const AllArticles = () => {
   const [allArticles, setAllArticels] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -17,6 +17,7 @@ export const AllArticles = (props) => {
       });
   }, []);
 
+
   if (isLoading)
     return (
       <main>
@@ -28,8 +29,8 @@ export const AllArticles = (props) => {
     <main>
       <section className="all-articles_container">
         <ul>
-          {allArticles.map((article, index) => {
-            return <ArticleCard key={index} {...article} />;
+          {allArticles.map((article, article_id) => {
+            return <ArticleCard key={article_id} {...article} />;
           })}
         </ul>
       </section>
