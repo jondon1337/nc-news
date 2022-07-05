@@ -1,0 +1,31 @@
+// import { patchCommentVoteById } from "../utils/api";
+ 
+// const {article_id, comment_id}  = props;
+ 
+ // patchCommentVoteById(comment_id, num).catch(() => {
+  //   setVoteIncrement((currVote) => currVote - num);
+  // });
+
+
+//   { body, author, votes, created_at, comment_id }
+
+
+
+// <p className="comment-author">
+// {comments.author} 
+{/* <MdUpdate /> */}
+{/* {comments.created_at.slice(0, -23)} */}
+// {comments.author === user ? (
+//   <button
+//     disabled={deleted}
+//     className="delete-button"
+//     variant="dark"
+//     onClick={() => handleClick(comments.comment_id)}
+//   >
+    {/* {<MdDelete className="delete-icon" />} */}
+//     <span>Delete</span>
+//   </button>
+// ) : (
+//   ""
+// )}
+// </p>

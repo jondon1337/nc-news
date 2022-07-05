@@ -1,24 +1,22 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getArticlesByTopic } from "../utils/api";
+import { useEffect, useState } from "react";
+import { getAllArticles } from "../utils/api";
 import { ArticleCard } from "./ArticleCard";
 
-export const TopicArticles = () => {
-  const [topicArticles, setTopicArticles] = useState([]);
+export const AllArticles = () => {
+  const [allArticles, setAllArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState(null);
   const [orderBy, setOrderBy] = useState(null);
 
-  let { topic_slug } = useParams();
-
   useEffect(() => {
-    getArticlesByTopic(topic_slug, sortBy, orderBy).then((data) => {
-      setTopicArticles(data);
-    })
-    .then(() => {
-      setIsLoading(false);
-    });
-  }, [topic_slug, sortBy, orderBy]);
+    getAllArticles(sortBy, orderBy)
+      .then((data) => {
+        setAllArticles(data);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
+  }, [allArticles, sortBy, orderBy]);
 
   const sorts = {
     created_at: "Date",
@@ -46,7 +44,7 @@ export const TopicArticles = () => {
 
   return (
     <main>
-      <section>
+      <section className="all-articles_container">
         <select
           className="sort by"
           onChange={(event) => {
@@ -74,8 +72,8 @@ export const TopicArticles = () => {
           <option value="desc">Descending</option>
         </select>
         <ul>
-          {topicArticles.map((article, index) => {
-            return <ArticleCard key={`card-${index}`} {...article} />;
+          {allArticles.map((article, article_id) => {
+            return <ArticleCard key={article_id} {...article} />;
           })}
         </ul>
       </section>

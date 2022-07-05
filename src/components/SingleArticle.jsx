@@ -7,7 +7,6 @@ export const SingleArticle = () => {
 
     const [articleById, setArticleById] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-
     const { article_id } = useParams()
 
     useEffect(() => {

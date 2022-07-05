@@ -17,7 +17,7 @@ export const Nav = () => {
 
 
   return (
-    <main>
+    <main className="nav">
       <section>
         {allTopics.map((topic, index) => {
           return (

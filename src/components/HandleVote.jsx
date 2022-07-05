@@ -1,21 +1,31 @@
 import { patchVoteById } from "../utils/api";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { patchCommentVoteById } from "../utils/api";
+import { useState } from "react";
+
 
 export const HandleVote = (props) => {
 
-const {setVotes, votes, article_id}  = props;
+const {article_id, comment_id}  = props;
 
 const [voteIncrement, setVoteIncrement] = useState(0)
 
 
 
-function voteCounter(value) {
-  setVoteIncrement((currVote) => currVote + value);
-  patchVoteById(article_id, value).catch(() => {
-    setVoteIncrement((currVote) => currVote - value);
+function voteCounter(num) {
+  setVoteIncrement((currVote) => currVote + num);
+  // patchCommentVoteById(comment_id, num);
+  patchVoteById(article_id, num).catch(() => {
+    setVoteIncrement((currVote) => currVote - num);
   });
-}
+  // setVoteIncrement((currVote) => currVote + num);
+  // patchCommentVoteById(comment_id, num).catch(() => {
+  //   setVoteIncrement((currVote) => currVote - num);
+  
+};
+
+
+
+
 
   // useEffect(() => { //step 2 see change(voteinc) run useeffect 
   //   setVotes((currVote) => currVote + voteIncrement) //step 3 optimist change on the api regardless of the api 
