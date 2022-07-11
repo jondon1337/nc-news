@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { AddComment } from "./AddComment";
 // import Delete from "./Delete";
 
-// import { HandleVote } from "./HandleVote";
+import { HandleVote } from "./HandleVote";
 
 export const Comments = () => {
   // const { author, body, comment_id, votes, created_at, isTempComment } =
@@ -45,11 +45,11 @@ export const Comments = () => {
                 <dt className="comment__author">Author: {author}</dt>
                 <br></br>
                 <dt className="comment__votes">Votes: {votes}</dt>
-                {/* <HandleVote 
-                setVotes={setVotes}
+                <HandleVote 
+                
                 votes={votes}
-                comment_id={props.comment_id}
-                /> */}
+                comment_id={comment_id}
+                />
                 <br></br>
                 <dt className="comment_date">{created_at}</dt>
                 {/* {isUserComment ? (

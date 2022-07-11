@@ -12,17 +12,17 @@ const [voteIncrement, setVoteIncrement] = useState(0)
 
 
 function voteCounter(num) {
+  comment_id !== null ?
   setVoteIncrement((currVote) => currVote + num);
-  // patchCommentVoteById(comment_id, num);
-  patchVoteById(article_id, num).catch(() => {
-    setVoteIncrement((currVote) => currVote - num);
+    patchVoteById(article_id, num).catch(() => {
+      setVoteIncrement((currVote) => currVote - num);
+  }) :
+  setVoteIncrement((currVote) => currVote + num);
+    patchCommentVoteById(comment_id, num).catch(() => {
+      setVoteIncrement((currVote) => currVote - num);
   });
-  // setVoteIncrement((currVote) => currVote + num);
-  // patchCommentVoteById(comment_id, num).catch(() => {
-  //   setVoteIncrement((currVote) => currVote - num);
-  
 };
-
+ 
 
 
 

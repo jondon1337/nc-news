@@ -4,7 +4,6 @@ import { useState } from "react";
 
 
 export const ArticleCard = (props) => {
-  const [votes, setVotes] = useState(props.votes);
   const [comment, setComment] = useState();
 
   const date = new Date(Date.parse(props.created_at))
@@ -34,8 +33,7 @@ export const ArticleCard = (props) => {
         </dt>
         <dt>
           <HandleVote
-            setVotes={setVotes}
-            votes={votes}
+            votes={props.votes}
             article_id={props.article_id}
           />
         </dt>

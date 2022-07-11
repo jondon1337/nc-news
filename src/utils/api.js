@@ -52,7 +52,7 @@ export const getCommentsById = (id) => {
   });
 };
 export const patchCommentVoteById = (id, votes) => {
-  return api.patch(`/articles/${id}/comments`, {inc_votes: votes}).then((response) => {
+  return api.patch(`/comments/${id}`, {inc_votes: votes}).then((response) => {
     return response.data.comment;
   });
 };
