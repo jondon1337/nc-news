@@ -16,20 +16,17 @@ export const AddComment = ({ setComments, article_id }) => {
     event.preventDefault();
 
     const newComment = {
-      username: "jessJelly",
+      username: "jessjelly",
       body: comment,
     };
     if (comment.length < 1) {
       alert("please insert a comment");
     } else {
-      setComments((currentComments) => {
-        return [newComment, ...currentComments];
-      });
       postComment(article_id, newComment)
-        .then((returnedComment) => {
+        .then((newComment) => {
           setComments((currentComments) => {
-            return [...currentComments, returnedComment];
-          });
+            return [newComment, ...currentComments];
+          })
         })
         .catch((err) => {
           alert("something when wrong.");

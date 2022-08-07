@@ -2,7 +2,7 @@ import { useState } from "react";
 import { deleteComment } from "../utils/api";
 
 
-export default function Delete ({comment_id, setDeleted}) {
+export default function Delete ({setComments, comment_id, setDeleted}) {
  
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
@@ -10,6 +10,11 @@ export default function Delete ({comment_id, setDeleted}) {
     setButtonDisabled(true);
     deleteComment(comment_id)
       .then(() => setDeleted(true))
+      .then((deletedComment) => {
+        setComments((currentComments) => {
+          return [deletedComment, ...currentComments]
+        })
+      })
       .catch(() => {
         setButtonDisabled(false);
       }) 

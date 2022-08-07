@@ -3,20 +3,18 @@ import { useEffect, useState, useContext } from "react";
 import { getCommentsById } from "../utils/api";
 import { useParams } from "react-router-dom";
 import { AddComment } from "./AddComment";
-// import Delete from "./Delete";
+import Delete from "./Delete";
 
 import { HandleVote } from "./HandleVote";
 
-export const Comments = () => {
-  // const { author, body, comment_id, votes, created_at, isTempComment } =
-  //   comment;
+export const Comments = (author) => {
 
   const [comments, setComments] = useState([]);
-  // const [deleted, setDeleted] = useState(false);
+  const [deleted, setDeleted] = useState(false);
   const { article_id } = useParams();
   // const { loggedInUser } = useContext(UserContext);
   // const isUserComment = loggedInUser === author;
-  // const [votes, setVotes] = useState(props.votes);
+  
 
   useEffect(() => {
     getCommentsById(article_id).then((comments) => {
@@ -24,7 +22,7 @@ export const Comments = () => {
     });
   }, [article_id]);
 
-  // if (deleted) return <p>Comment deleted</p>;
+  if (deleted) return <p>Comment deleted</p>;
 
   return (
     <>
@@ -36,6 +34,7 @@ export const Comments = () => {
       <ul>
         {comments.map(({ body, author, votes, created_at, comment_id }) => {
           return (
+            
             <li className="comments" key={comment_id}>
               <dl>
                 <dt className="comment__title">Comment Id: {comment_id}</dt>
@@ -52,13 +51,14 @@ export const Comments = () => {
                 />
                 <br></br>
                 <dt className="comment_date">{created_at}</dt>
-                {/* {isUserComment ? (
+                {/* { author ? ( */}
                   <Delete
                     comment_id={comment_id}
                     setDeleted={setDeleted}
+                    setComments={setComments}
                     // isTempComment={isTempComment}
                   />
-                ) : (
+                {/* ) : (
                   ""
                 )} */}
               </dl>

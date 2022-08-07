@@ -16,7 +16,7 @@ export const AllArticles = () => {
       .then(() => {
         setIsLoading(false);
       });
-  }, [allArticles, sortBy, orderBy]);
+  }, [sortBy, orderBy]);
 
   const sorts = {
     created_at: "Date",

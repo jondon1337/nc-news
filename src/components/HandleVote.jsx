@@ -12,25 +12,15 @@ const [voteIncrement, setVoteIncrement] = useState(0)
 
 
 function voteCounter(num) {
-  comment_id !== null ?
-  setVoteIncrement((currVote) => currVote + num);
+  comment_id === undefined ?
     patchVoteById(article_id, num).catch(() => {
       setVoteIncrement((currVote) => currVote - num);
   }) :
-  setVoteIncrement((currVote) => currVote + num);
     patchCommentVoteById(comment_id, num).catch(() => {
-      setVoteIncrement((currVote) => currVote - num);
+      setVoteIncrement((currVote) => currVote + num);
   });
+  setVoteIncrement((currVote) => currVote + num);
 };
- 
-
-
-
-
-  // useEffect(() => { //step 2 see change(voteinc) run useeffect 
-  //   setVotes((currVote) => currVote + voteIncrement) //step 3 optimist change on the api regardless of the api 
-  //   patchVoteById(article_id, voteIncrement)  //step4 update the api call 
-  // }, [voteIncrement]);
 
   return (
     <section>
