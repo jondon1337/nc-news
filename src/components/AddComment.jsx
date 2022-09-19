@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { postComment } from "../utils/api";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
-// import { UserContext } from "./User";
-// import { useContext } from "react";
-
-export const AddComment = ({ setComments, article_id }) => {
+export const AddComment = ({ setComments, article_id, author }) => {
   const [comment, setComment] = useState("");
-  // let { user } = useContext(UserContext);
+  let { loggedInUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     setComment(event.target.value);
@@ -16,7 +15,7 @@ export const AddComment = ({ setComments, article_id }) => {
     event.preventDefault();
 
     const newComment = {
-      username: "jessjelly",
+      username: loggedInUser,
       body: comment,
     };
     if (comment.length < 1) {

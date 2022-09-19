@@ -1,19 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-// import { UserContext } from "../contexts/UserContext";
+import { useEffect, useState } from "react";
 import { getCommentsById } from "../utils/api";
 import { useParams } from "react-router-dom";
 import { AddComment } from "./AddComment";
 import Delete from "./Delete";
-
 import { HandleVote } from "./HandleVote";
+import Moment from "moment";
 
-export const Comments = (author) => {
+export const Comments = () => {
 
   const [comments, setComments] = useState([]);
-  const [deleted, setDeleted] = useState(false);
   const { article_id } = useParams();
-  // const { loggedInUser } = useContext(UserContext);
-  // const isUserComment = loggedInUser === author;
   
 
   useEffect(() => {
@@ -22,7 +18,7 @@ export const Comments = (author) => {
     });
   }, [article_id]);
 
-  if (deleted) return <p>Comment deleted</p>;
+  
 
   return (
     <>
@@ -37,30 +33,24 @@ export const Comments = (author) => {
             
             <li className="comments" key={comment_id}>
               <dl>
-                <dt className="comment__title">Comment Id: {comment_id}</dt>
+                <dt className="comment__title"><strong>Comment Id:</strong> {comment_id}</dt>
                 <br></br>
-                <dt>comment: {body}</dt>
+                <dt><strong>comment:</strong> {body}</dt>
                 <br></br>
-                <dt className="comment__author">Author: {author}</dt>
+                <dt className="comment__author"><strong>Author:</strong> {author}</dt>
                 <br></br>
-                <dt className="comment__votes">Votes: {votes}</dt>
+                <dt className="comment__votes"><strong>Votes:</strong> {votes}</dt>
                 <HandleVote 
                 
                 votes={votes}
                 comment_id={comment_id}
                 />
                 <br></br>
-                <dt className="comment_date">{created_at}</dt>
-                {/* { author ? ( */}
+                <dt className="comment_date"><strong>posted:</strong> {Moment(created_at).format("DD-MM-YYYY")}</dt>
                   <Delete
                     comment_id={comment_id}
-                    setDeleted={setDeleted}
-                    setComments={setComments}
-                    // isTempComment={isTempComment}
+                    author={author}
                   />
-                {/* ) : (
-                  ""
-                )} */}
               </dl>
             </li>
           );

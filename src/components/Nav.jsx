@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useEffect } from "react";
 import { getTopics } from "../utils/api"
-
+import { UserContext } from "./UserContext";
 
 export const Nav = () => {
 
     const [allTopics, setAllTopics] = useState([]);
+    const { loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         getTopics().then((data) => {
@@ -29,10 +30,14 @@ export const Nav = () => {
           );
         })}
       </section>
+      <div>
+        user:{loggedInUser}
+      </div>
 
       <nav>
         <Link to="/">Home Page</Link>
       </nav>
+      
     </main>
   );
 };

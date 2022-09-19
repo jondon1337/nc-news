@@ -1,34 +1,33 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { deleteComment } from "../utils/api";
+import { UserContext } from "./UserContext";
 
 
-export default function Delete ({setComments, comment_id, setDeleted}) {
- 
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const handleClick = () => {
-    setButtonDisabled(true);
-    deleteComment(comment_id)
-      .then(() => setDeleted(true))
-      .then((deletedComment) => {
-        setComments((currentComments) => {
-          return [deletedComment, ...currentComments]
-        })
-      })
-      .catch(() => {
-        setButtonDisabled(false);
-      }) 
+export default function Delete({ comment_id, author }) {
+  const [deleted, setDeleted] = useState(false);
+  const { loggedInUser } = useContext(UserContext);
+  
+
+  const handleDelete = () => {
+    deleteComment(comment_id).then(() => {
+      setDeleted(true);
+    });
   };
+
+  if(author !== loggedInUser) {
+    return <p className="deleted-text">Cannot delete another users comment</p>;
+  } 
+
+  if (deleted) {
+    return <p className="deleted-text">Deleted</p>;
+  }
+
   return (
     <>
-      {/* <p id="comment-error-message">{err}</p> */}
-      <button
-        className="comment-delete-button"
-        disabled={buttonDisabled}
-        onClick={() => handleClick()}
-      >
+      <button className="comment-delete-button" onClick={() => {handleDelete(comment_id)}}>
         Delete
       </button>
     </>
   );
-};
+}
